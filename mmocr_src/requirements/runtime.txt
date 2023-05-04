@@ -1,0 +1,11 @@
+imgaug
+lanms-neo==1.0.2
+lmdb
+matplotlib
+numba>=0.45.1
+numpy
+pyclipper
+rapidfuzz
+scikit-image
+six
+terminaltables
