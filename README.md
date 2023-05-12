@@ -1,4 +1,4 @@
-## Turning a CLIP Model into a Scene Text Detector
+## Turning a CLIP Model into a Scene Text Detector (CVPR 2023)
 This repository is build upon [mmocr 0.4.0](https://github.com/open-mmlab/mmocr/tree/0.x).
 
 
