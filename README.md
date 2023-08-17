@@ -70,6 +70,7 @@ bash dist_test.sh configs/textdet/xxnet/xxx.py /path/to/checkpoint 1 --eval hmea
 
 
 ### TODO
+- [ ] Add FastTCM
 - [ ] Migration from mmocr 0.4.0 to mmocr 1.0.0
 - [ ] Refactor and clean code
 - [ ] Release domain adaptation setting
