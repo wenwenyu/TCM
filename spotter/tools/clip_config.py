@@ -27,7 +27,7 @@ def add_model_config(cfg: CN) -> None:
     _C.CLIP.class_names = ["the pixels of many arbitrary-shape text instances."]
     _C.CLIP.token_embed_dim = 512
     _C.CLIP.text_dim = 1024
-
+    _C.CLIP.is_v2 = False
 
     TEXT_ENCODER = CN()
     TEXT_ENCODER.context_length=18
