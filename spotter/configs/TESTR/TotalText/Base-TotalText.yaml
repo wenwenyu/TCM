@@ -1,0 +1,7 @@
+_BASE_: "../Base-TESTR.yaml"
+DATASETS:
+  TRAIN: ("totaltext_train",)
+  TEST: ("totaltext_val",)
+TEST:
+  USE_LEXICON: False
+  LEXICON_TYPE: 1

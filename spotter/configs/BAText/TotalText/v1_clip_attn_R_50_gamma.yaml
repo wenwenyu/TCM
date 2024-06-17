@@ -1,0 +1,17 @@
+_BASE_: "Base-CLIP-TotalText.yaml"
+MODEL:
+  WEIGHTS: "/apdcephfs/private_v_fisherwyu/code/TESTR/weights/abc/tt/tt_e2e_attn_R_50.pth"
+  RESNETS:
+    DEPTH: 50
+  BATEXT:
+    RECOGNIZER: "attn" # "attn" "rnn"
+SOLVER:
+  IMS_PER_BATCH: 8
+  BASE_LR: 0.001
+  MAX_ITER: 5000
+  CHECKPOINT_PERIOD: 1000
+TEST:
+  EVAL_PERIOD: 1000
+OUTPUT_DIR: "output/batext/totaltext/attn_R_50"
+CLIP:
+  use_score_map_concat_gamma: True

@@ -70,6 +70,7 @@ class OCRCLIP(TextDetectorMixin, MMDET_SingleStageDetector):
                  show_score=False,
                  init_cfg=None,
                  token_embed_dim=512, text_dim=1024,
+                 is_v2=False,
                  **args):
         super(MMDET_SingleStageDetector, self).__init__(init_cfg=init_cfg)
         TextDetectorMixin.__init__(self, show_score)
@@ -163,6 +164,10 @@ class OCRCLIP(TextDetectorMixin, MMDET_SingleStageDetector):
 
         self.visualization_feat = False # for visualization only
 
+        self.is_v2 = is_v2
+        if self.is_v2:
+            self.meta_query = nn.Parameter(torch.randn(1024))
+            self.pix_w = nn.Parameter(torch.ones(1024, 512))
         assert self.with_bbox
 
     def _init_auxiliary_head(self, auxiliary_head):
@@ -263,7 +268,10 @@ class OCRCLIP(TextDetectorMixin, MMDET_SingleStageDetector):
         prompt_gen = None
         # text prompting
         if self.prompt_generator is not None: # text prompt generator
-            prompt_gen = self.prompt_generator(global_feat) # (B, C)
+            if self.is_v2:
+                prompt_gen = self.prompt_generator(self.meta_query.expand(B, -1)) # (B, C)
+            else:
+                prompt_gen = self.prompt_generator(global_feat) # (B, C)
 
         contexts = self.contexts if self.use_learnable_prompt else None # (1, N, C)
         # (B, K, C), last time step t as output, (BKLC->BKC)
@@ -273,7 +281,14 @@ class OCRCLIP(TextDetectorMixin, MMDET_SingleStageDetector):
                                 contexts,
                                 use_learnable_prompt_only=self.use_learnable_prompt_only,
                                 prompt_gen=prompt_gen).expand(B, -1, -1)
-
+        
+        if self.is_v2:
+            global_feat_ = global_feat@self.pix_w
+            global_feat_ = F.normalize(global_feat_, dim=-1, p=2).unsqueeze(1) # (B,1,D)
+            text_embeddings = F.normalize(text_embeddings, dim=-1, p=2)
+            cossim = torch.sum(text_embeddings * global_feat_, dim=-1).unsqueeze(-1) # (B,K,1)
+            text_embeddings = cossim * global_feat_ + text_embeddings
+        
         # visual prompting
         # import pdb;pdb.set_trace()
         if self.visual_prompt_generator is not None:

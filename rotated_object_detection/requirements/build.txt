@@ -1,0 +1,5 @@
+# These must be installed before building mmrotate
+cython
+numpy<1.24.0
+e2cnn
+open_clip_torch

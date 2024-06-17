@@ -68,9 +68,16 @@ bash dist_test.sh configs/textdet/xxnet/xxx.py /path/to/checkpoint 1 --eval hmea
 | TCM-DB | CTW |    85.1%       |  [config](ocrclip/configs/textdet/dbnet/clip_db_r50_fpnc_prompt_gen_vis_32_1200e_ft_ctw_adamw_taiji.py)      |            
 | TCM-DB | TT |    85.9%       |    [config](ocrclip/configs/textdet/dbnet/clip_db_r50_fpnc_prompt_gen_vis_32_1200e_ft_tt_adamw_taiji.py)    |            
 
+## Turning a CLIP Model into a Scene Text Spotter
+
+### TCM for Scene Text Spotter
+Please refer to  the [`spotter`](spotter) folder for more details.
+
+### TCM for Rotated Object Detection
+Please refer to  the [`rotated_object_detection`](rotated_object_detection) folder for more details.
 
 ### TODO
-- [ ] Add FastTCM
+- [x] Add FastTCM
 - [ ] Migration from mmocr 0.4.0 to mmocr 1.0.0
 - [ ] Refactor and clean code
 - [ ] Release domain adaptation setting
@@ -85,6 +92,13 @@ If you find this project helpful for your research, please consider citing the p
   booktitle={IEEE Conference on Computer Vision and Pattern Recognition},
   year={2023}
 }
+
+@article{Yu2024TurningAC,
+  title={Turning a CLIP Model into a Scene Text Spotter},
+  author={Wenwen Yu and Yuliang Liu and Xingkui Zhu and Haoyu Cao and Xing Sun and Xiang Bai},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2024}
+}
 ```
 
 ### Licence
@@ -92,4 +106,4 @@ This project is under the CC-BY-NC 4.0 license. See `LICENSE` for more details.
 
 
 ### Acknowledges
-The project partially based on [MMOCR](https://github.com/open-mmlab/mmocr), [CLIP](https://github.com/openai/CLIP), [DenseCLIP](https://github.com/raoyongming/DenseCLIP). Thanks for their great works.
+The project partially based on [MMOCR](https://github.com/open-mmlab/mmocr), [CLIP](https://github.com/openai/CLIP), [MMRotate](https://github.com/open-mmlab/mmrotate), [DenseCLIP](https://github.com/raoyongming/DenseCLIP), [AdelaiDet](https://github.com/aim-uofa/AdelaiDet), [Deformable-DETR](https://github.com/fundamentalvision/Deformable-DETR), [TESTR](https://github.com/mlpc-ucsd/TESTR). Thanks for their great works.

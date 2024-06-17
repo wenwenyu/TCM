@@ -1,0 +1,13 @@
+_BASE_: "../Base-TESTR.yaml"
+DATASETS:
+  TRAIN: ("totaltext_poly_train",)
+  TEST: ("totaltext_poly_val",)
+MODEL:
+  TRANSFORMER:
+    USE_POLYGON: True
+    NUM_CTRL_POINTS: 16
+    LOSS:
+      POINT_TEXT_WEIGHT: 4.0
+TEST:
+  USE_LEXICON: False
+  LEXICON_TYPE: 1

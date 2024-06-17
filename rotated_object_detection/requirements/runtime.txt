@@ -1,0 +1,7 @@
+e2cnn
+matplotlib
+numpy
+pycocotools
+six
+terminaltables
+torch

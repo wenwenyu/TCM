@@ -1,0 +1,15 @@
+_BASE_: "../Base-TESTR.yaml"
+MODEL:
+  TRANSFORMER:
+    INFERENCE_TH_TEST: 0.6
+    NUM_CHARS: 100
+DATASETS:
+  TRAIN: ("ctw1500_word_train",)
+  TEST: ("ctw1500_word_test",)
+INPUT:
+  MIN_SIZE_TEST: 1000
+  MAX_SIZE_TRAIN: 1333
+TEST:
+  USE_LEXICON: False
+  LEXICON_TYPE: 1
+

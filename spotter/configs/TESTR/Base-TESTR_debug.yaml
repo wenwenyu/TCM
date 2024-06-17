@@ -1,0 +1,41 @@
+MODEL:
+  META_ARCHITECTURE: "TransformerDetector"
+  MASK_ON: False
+  PIXEL_MEAN: [123.675, 116.280, 103.530]
+  PIXEL_STD: [58.395, 57.120, 57.375]
+  BACKBONE:
+    NAME: "build_resnet_backbone"
+  RESNETS:
+    STRIDE_IN_1X1: False
+    OUT_FEATURES: ["res3", "res4", "res5"]
+  TRANSFORMER:
+    ENABLED: True
+    INFERENCE_TH_TEST: 0.45
+SOLVER:
+  WEIGHT_DECAY: 1e-4
+  OPTIMIZER: "ADAMW"
+  LR_BACKBONE_NAMES: ['backbone.0']
+  LR_LINEAR_PROJ_NAMES: ['reference_points', 'sampling_offsets']
+  LR_LINEAR_PROJ_MULT: 0.1
+  CLIP_GRADIENTS:
+    ENABLED: True
+    CLIP_TYPE: "full_model"
+    CLIP_VALUE: 0.1
+    NORM_TYPE: 2.0
+DATALOADER:
+  NUM_WORKERS: 4
+INPUT:
+  HFLIP_TRAIN: False
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800, 832, 864, 896)
+  MAX_SIZE_TRAIN: 1600
+  MIN_SIZE_TEST: 1600
+  MAX_SIZE_TEST: 1824
+  CROP:
+    ENABLED: True
+    CROP_INSTANCE: False
+    SIZE: [0.1, 0.1]
+  FORMAT: "RGB"
+CLIP:
+  WEIGHTS: "/home/wwyu/code/TESTR/weights/RN50.pt"
+DATA_ROOT: "/home/wwyu/code/TESTR/datasets"
+EVALUATOR_CLASS_TYPE: "testr_text"

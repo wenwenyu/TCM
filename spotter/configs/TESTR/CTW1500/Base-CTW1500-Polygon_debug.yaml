@@ -1,0 +1,19 @@
+_BASE_: "../Base-TESTR_debug.yaml"
+MODEL:
+  TRANSFORMER:
+    INFERENCE_TH_TEST: 0.7
+    NUM_CHARS: 100
+    USE_POLYGON: True
+    NUM_CTRL_POINTS: 16
+    LOSS:
+      POINT_TEXT_WEIGHT: 4.0
+DATASETS:
+  TRAIN: ("ctw1500_word_poly_train",)
+  TEST: ("ctw1500_word_poly_test",)
+INPUT:
+  MIN_SIZE_TEST: 1000
+  MAX_SIZE_TRAIN: 1333
+TEST:
+  USE_LEXICON: False
+  LEXICON_TYPE: 1
+

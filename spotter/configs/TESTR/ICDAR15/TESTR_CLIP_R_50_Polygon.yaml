@@ -1,0 +1,34 @@
+_BASE_: "Base-CLIP-ICDAR15-Polygon.yaml"
+MODEL:
+  WEIGHTS: "/home/wwyu/code/TESTR/weights/TESTR/pretrain_testr_R_50_polygon.pth"
+  RESNETS:
+    DEPTH: 50
+  TRANSFORMER:
+    NUM_FEATURE_LEVELS: 4
+    INFERENCE_TH_TEST: 0.3
+    ENC_LAYERS: 6
+    DEC_LAYERS: 6
+    DIM_FEEDFORWARD: 1024
+    HIDDEN_DIM: 256
+    DROPOUT: 0.1
+    NHEADS: 8
+    NUM_QUERIES: 100
+    ENC_N_POINTS: 4
+    DEC_N_POINTS: 4
+DATALOADER:
+  NUM_WORKERS: 0
+SOLVER:
+  IMS_PER_BATCH: 1
+  BASE_LR: 1e-5
+  LR_BACKBONE: 1e-6
+  WARMUP_ITERS: 0
+  STEPS: (200000,)
+  MAX_ITER: 20000
+  CHECKPOINT_PERIOD: 1000
+TEST:
+  EVAL_PERIOD: 1000
+OUTPUT_DIR: "output/TESTR/icdar15/TESTR_R_50_Polygon"
+#CLIP:
+#  WEIGHTS: "/home/wwyu/code/TESTR/weights/RN50.pt"
+#DATA_ROOT: "/home/wwyu/code/TESTR/datasets"
+#EVALUATOR_CLASS_TYPE: "testr_text"

@@ -1,0 +1,10 @@
+_BASE_: "../Base-TESTR.yaml"
+DATASETS:
+  TRAIN: ("mltbezier_word_poly_train", "totaltext_poly_train", "syntext1_poly_train", "syntext2_poly_train",) 
+  TEST: ("totaltext_poly_val",)
+MODEL:
+  TRANSFORMER:
+    USE_POLYGON: True
+    NUM_CTRL_POINTS: 16
+    LOSS:
+      POINT_TEXT_WEIGHT: 4.0
